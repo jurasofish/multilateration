@@ -73,8 +73,9 @@ def get_locus(tower_1, tower_2, time_1, time_2, v, delta_d, max_d):
             near the towers.
 
     Returns
-        x: numpy array of x values of locus.
-        y: numpy array of y values of locus.
+        list of form [x, y], with:
+                x: numpy array of x values of locus.
+                y: numpy array of y values of locus.
     '''
     # two lines, x0/y0 and x1/y1 corresponding to the two intersections of the
     # circles. These will be concateneated at the end to form a single line.
