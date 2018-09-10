@@ -42,9 +42,7 @@ plot_lines_between_towers (bool): Whether to plot a straight line
 '''
 
 import numpy as np
-from munch import munchify
 from pprint import pprint
-import matplotlib.pyplot as plt
 import math
 
 
@@ -211,6 +209,9 @@ def circle_intersection(circle1, circle2):
 
 
 def main():
+    
+    from munch import munchify
+    import matplotlib.pyplot as plt
 
     config = {'num_towers': 3,
               'tx_square_side': 5e3,
