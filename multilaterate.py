@@ -115,7 +115,7 @@ def get_locus(tower_1, tower_2, time_1, time_2, v, delta_d, max_d):
     x = x0 + x1
     y = y0 + y1
 
-    return (x, y)
+    return [x, y]
 
 
 def get_loci(rec_times, towers, v, delta_d, max_d):
