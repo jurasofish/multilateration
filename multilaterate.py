@@ -148,7 +148,7 @@ def get_loci(rec_times, towers, v, delta_d, max_d):
     first_tower = int(np.argmin(rec_times))
     # Iterate over all other towers.
     for j in [x for x in range(towers.shape[0]) if x!= first_tower]:
-        print('tower', str(first_tower), 'to', str(j))
+        # print('tower', str(first_tower), 'to', str(j))
         locus = get_locus(tower_1=(towers[first_tower][0],
                                    towers[first_tower][1]),
                           tower_2=(towers[j][0], towers[j][1]),
