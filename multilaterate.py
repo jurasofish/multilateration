@@ -139,6 +139,9 @@ def get_loci(rec_times, towers, v, delta_d, max_d):
             y elements.
         '''
 
+    if(rec_times.shape[0] == 0):
+        return [] # return no loci
+    
     loci = []
 
     # Tower that receives the transmission first.
