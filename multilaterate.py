@@ -95,7 +95,7 @@ def get_locus(tower_1, tower_2, time_1, time_2, v, delta_d, max_d):
         circle2 = (tower_1[0], tower_1[1], t_delta_d)
 
     # Iterate over all potential radii.
-    for _ in range(max_d//delta_d):
+    for _ in range(int(max_d)//int(delta_d)):
         intersect = circle_intersection(circle1, circle2)
         if(intersect is not None):
             x0.append(intersect[0][0])
