@@ -43,7 +43,6 @@ plot_lines_between_towers (bool): Whether to plot a straight line
 '''
 
 import numpy as np
-from pprint import pprint
 import math
 
 
