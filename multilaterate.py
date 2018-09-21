@@ -13,33 +13,6 @@ For example, a path that is 5km horizontally and 500m vertically is
 in total 5.025km ((5**2 + 0.5**2)**0.5). Depending on clock noise this could
 be considered negligible.
 
-
-        This section describes the config in main():
-num_towers (int): How many towers. All towers recieve the transmission.
-tx_square_side (int): Metre length of a square containing the transmitting
-    device, centred around (x, y) = (0, 0). Device will be randomly placed
-    in this area.
-rx_square_side (int): Metre length of a square containing the towers,
-    centred around (x, y) = (0, 0). towers will be randomly placed
-    in this area.
-v (int): Speed of transmission propogation.
-t_0 (float): Time at which transmission is performed. Really just useful to
-    make sure the code is using relative times rather than depending on one
-    of the receive times being zero.
-delta_d (int): Metre increments to radii of circles when generating locus of
-    circle intersection.
-max_d (int): Max distance a transmission will be from the tower that first
-    received the transmission. This puts an upper bound on the radii of the
-    circle, thus limiting the size of the locus to be near the towers.
-rec_time_noise_stdd (float): Standard deviation of noise added to the
-    receive times at the towers. Mean is zero.
-plot_trilateration_circles (bool): Whether to plot circles that would be
-    used if performing trilateration. These are circles that are centred
-    on the towers and touch the transmitter site.
-plot_lines_between_towers (bool): Whether to plot a straight line
-    between every pair of towers. This is useful for visualising the
-    hyperbolic loci focal points.
-
 '''
 
 import numpy as np
