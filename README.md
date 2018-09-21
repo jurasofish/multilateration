@@ -1,7 +1,8 @@
 # Multilateration
 Draw loci corresponding to radio transmission multilateration.
 
-This program plots loci for the scenario where there are radio towers
+This program plots loci of possible transmitter locations for the scenario 
+where there are radio towers
 at known locations and a transmitter at an unknown location. The radio
 towers accurately timestamp when they receive the transmission, allowing
 time difference of arrival (TDOA) to be determined. This forms a
