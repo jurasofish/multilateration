@@ -27,12 +27,12 @@ def get_locus(tower_1, tower_2, time_1, time_2, v, delta_d, max_d):
     the towers received the transmission, the set of possible
     locations of the transmission is defined by the locus of the intersection
     of two circles with one circle around each tower and the difference in
-    radius of the circles defined by the difference in receive tiems
+    radius of the circles defined by the difference in receive tiemes
     of the transmission and the propogation speed of the transmission.
 
     Args:
         tower_1 (tuple): (x, y) of one tower.
-        tower_2 (tuple): (x, y) of other towerself.
+        tower_2 (tuple): (x, y) of other tower.
         time_1 (float): Transmission recieve time at tower_1.
         time_2 (float): Transmission recieve time at tower_2.
         v (int): Speed of transmission propogation.
@@ -45,8 +45,8 @@ def get_locus(tower_1, tower_2, time_1, time_2, v, delta_d, max_d):
 
     Returns
         list of form [x, y], with:
-                x: numpy array of x values of locus.
-                y: numpy array of y values of locus.
+                x: list of x values of locus.
+                y: list of y values of locus.
     '''
     # two lines, x0/y0 and x1/y1 corresponding to the two intersections of the
     # circles. These will be concateneated at the end to form a single line.
@@ -96,8 +96,8 @@ def get_loci(rec_times, towers, v, delta_d, max_d):
     Args:
         rec_times (np.array 1D): The times at which the towers recieved
             the transmission, in seconds. Element i corresponds to tower i.
-        towers (np.array 2D): Locations of towers. Tower is is located at
-            (x, y) = (towers[i][0], towers[i][1])\
+        towers (np.array 2D): Locations of towers. Tower i is located at
+            (x, y) = (towers[i][0], towers[i][1])
         v (int): Speed of transmission propogation.
         delta_d (int): Metre increments to radii of circles when generating
             locus of circle intersection.
@@ -140,7 +140,7 @@ def circle_intersection(circle1, circle2):
 
     Args:
         circle1: tuple(x,y,radius)
-        circle1: tuple(x,y,radius)
+        circle2: tuple(x,y,radius)
 
     Returns
         tuple of intersection points (which are (x,y) tuple)
