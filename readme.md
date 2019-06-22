@@ -5,7 +5,7 @@
 ## Abstract
 A single motivated individual with several hundred USD and a hobbyist level of competency in electronics and programming would be able to set up a mass surveillance system to track individual LoRa IoT devices on the scale of a small city, provided that the geography of the city is accommodating to the placement of receiving devices (e.g. surrounded by hills).
 
-## Locating the source of a signal transmission
+## Locating the source of a signal transmission - intuition
 
 When a signal is transmitted by a radio device it propagates through the atmosphere at approximately the speed of light - that is, approximately <img src="/tex/7b40691d3fcdab7f1174d83e2de738c6.svg?invert_in_darkmode&sanitize=true" align=middle width=93.18497264999998pt height=26.76175259999998pt/>. 
 
@@ -28,6 +28,24 @@ With <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sani
 <p align="center"><img src="animations/loci.gif"></p>
 
 The accuracy of the determined location will depend on the accuracy of the timestamping, the effects of diffraction and obstacles on path length, the relative geometry of the transmitter and towers, etc. The approximation of the problem to two dimensions will also introduce error.
+
+## Analysis
+Multilateration was just explained in an intuitive manner. However, it is convenient to have a set of mathematical expressions that describe the system if the location of the transmitter is to be found. This analysis is inspired heavily by [André Andersen's](http://blog.andersen.im/2012/07/signal-emitter-positioning-using-multilateration) similar work.
+
+Consider a transmitter located at <img src="/tex/19e3f7018228f8a8c6559d0ea5500aa2.svg?invert_in_darkmode&sanitize=true" align=middle width=10.747741949999991pt height=23.488575000000026pt/> whose transmission at time <img src="/tex/6df6ddacc987bd7a5070beafef47fcc1.svg?invert_in_darkmode&sanitize=true" align=middle width=12.48864374999999pt height=20.221802699999984pt/> propagates at speed <img src="/tex/1a9f68fae14a5f2c3944f20c7746c582.svg?invert_in_darkmode&sanitize=true" align=middle width=53.002433549999985pt height=26.76175259999998pt/> and is received by a set of towers located at <img src="/tex/81e4c10c4a5aefbf7d79a0aa3c401941.svg?invert_in_darkmode&sanitize=true" align=middle width=12.92146679999999pt height=23.488575000000026pt/> with transmission receive times <img src="/tex/02ab12d0013b89c8edc7f0f2662fa7a9.svg?invert_in_darkmode&sanitize=true" align=middle width=10.58699729999999pt height=20.221802699999984pt/>. Tower <img src="/tex/1447b57eb35586ec64a4d8d2fbb653e0.svg?invert_in_darkmode&sanitize=true" align=middle width=14.14521899999999pt height=23.488575000000026pt/> with receive time <img src="/tex/23eda6b0b8aec6ac41ed8b7cb41c0942.svg?invert_in_darkmode&sanitize=true" align=middle width=11.810749499999991pt height=20.221802699999984pt/> is the first tower to receive the message, and <img src="/tex/127ea00ccd4d4c46555e5e370bbab69d.svg?invert_in_darkmode&sanitize=true" align=middle width=34.69466054999999pt height=22.831056599999986pt/>.
+
+For the first tower, <img src="/tex/1447b57eb35586ec64a4d8d2fbb653e0.svg?invert_in_darkmode&sanitize=true" align=middle width=14.14521899999999pt height=23.488575000000026pt/> we can say that the distance between the transmitter <img src="/tex/19e3f7018228f8a8c6559d0ea5500aa2.svg?invert_in_darkmode&sanitize=true" align=middle width=10.747741949999991pt height=23.488575000000026pt/> and the tower is equal to the transmission propagation speed multiplied by the time of flight.
+<p align="center"><img src="/tex/a4c6de18edfc65fe4376b9438c00ec4b.svg?invert_in_darkmode&sanitize=true" align=middle width=150.1870128pt height=16.438356pt/></p>
+
+We can make a similar statement for each of the other towers.
+<p align="center"><img src="/tex/8182282dad754f66fe56591253699990.svg?invert_in_darkmode&sanitize=true" align=middle width=234.53043899999997pt height=65.753424pt/></p>
+
+Combining these two expressions we obtain the following, where the only known is <img src="/tex/19e3f7018228f8a8c6559d0ea5500aa2.svg?invert_in_darkmode&sanitize=true" align=middle width=10.747741949999991pt height=23.488575000000026pt/>.
+<p align="center"><img src="/tex/7146d7ec04600031453049bed6b8a9b0.svg?invert_in_darkmode&sanitize=true" align=middle width=228.04446059999998pt height=16.438356pt/></p>
+
+Expanding this out we obtain an expression that can be readily applied, where subscript <img src="/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> and <img src="/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/> denote the x and y components of a vector respectively.
+<p align="center"><img src="/tex/10b4e50a7a481d84f1c0d380611ed3d3.svg?invert_in_darkmode&sanitize=true" align=middle width=575.6892998999999pt height=55.06880115pt/></p>
+
 
 ## Implications: IoT and LoRaWAN
 
