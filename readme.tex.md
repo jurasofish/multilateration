@@ -5,7 +5,7 @@
 ## Abstract
 A single motivated individual with several hundred USD and a hobbyist level of competency in electronics and programming would be able to set up a mass surveillance system to track individual LoRa IoT devices on the scale of a small city, provided that the geography of the city is accommodating to the placement of receiving devices (e.g. surrounded by hills).
 
-## Locating the source of a signal transmission
+## Locating the source of a signal transmission - intuition
 
 When a signal is transmitted by a radio device it propagates through the atmosphere at approximately the speed of light - that is, approximately $v = 3 \text{e} 8ms^{-1}$. 
 
@@ -28,6 +28,41 @@ With $n$ towers, this process can be repeated between the tower that first recei
 <p align="center"><img src="animations/loci.gif"></p>
 
 The accuracy of the determined location will depend on the accuracy of the timestamping, the effects of diffraction and obstacles on path length, the relative geometry of the transmitter and towers, etc. The approximation of the problem to two dimensions will also introduce error.
+
+## Analysis
+Multilateration was just explained in an intuitive manner. However, it is convenient to have a set of mathematical expressions that describe the system if the location of the transmitter is to be found. This analysis is inspired heavily by [André Andersen's](http://blog.andersen.im/2012/07/signal-emitter-positioning-using-multilateration) similar work.
+
+Consider a transmitter located at $\vec{x}$ whose transmission at time $t_0$ propagates at speed $v \ ms^{-1}$ and is received by a set of towers located at $\vec{p}_i$ with transmission receive times $t_i$. Tower $\vec{p}_c$ with receive time $t_c$ is the first tower to receive the message, and $c \neq i$.
+
+For the first tower, $\vec{p}_c$ we can say that the distance between the transmitter $\vec{x}$ and the tower is equal to the transmission propagation speed multiplied by the time of flight.
+$$
+\|\vec{x} - \vec{p}_c\| = v(t_c-t_0)
+$$
+
+We can make a similar statement for each of the other towers.
+$$
+\begin{align}
+\|\vec{x} - \vec{p}_i\| &= v(t_i-t_0) \\
+&= v(t_i - t_c + t_c - t_0) \\
+&= v(t_i - t_c) + v(t_c - t_0) \\
+\end{align}
+$$
+
+Combining these two expressions we obtain the following, where the only known is $\vec{x}$.
+$$
+\|\vec{x} - \vec{p}_c\| = \|\vec{x} - \vec{p}_i\| - v(t_i - t_c)
+$$
+
+Expanding this out we obtain an expression that can be readily applied, where subscript $x$ and $y$ denote the x and y components of a vector respectively.
+$$
+\begin{align}
+&\|\vec{x} - \vec{p}_c\| - \|\vec{x} - \vec{p}_i\| + v(t_i - t_c) &= 0 \\
+\Rightarrow \ & \sqrt{(\vec{x}_x - \vec{p}_{c,x})^2 + (\vec{x}_y - \vec{p}_{c,y})^2}
+              - \sqrt{(\vec{x}_x - \vec{p}_{i,x})^2 + (\vec{x}_y - \vec{p}_{i,y})^2} 
+              + v(t_i - t_c) &= 0 \\
+\end{align}
+$$
+
 
 ## Implications: IoT and LoRaWAN
 
