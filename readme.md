@@ -13,7 +13,7 @@ If this signal is received by two receivers (towers), the time difference of arr
 
 The below animation shows a signal propagating from a transmitter "Tx" and being received by two towers at different times, allowing the <img src="/tex/ab518d5c66f0b911c92e35acce6ab925.svg?invert_in_darkmode&sanitize=true" align=middle width=49.08689279999998pt height=22.465723500000017pt/> to be calculated.
 
-<img src="animations/tdoa.gif" align="middle">
+<p align="center"><img src="animations/tdoa.gif"></p>
 
 This <img src="/tex/ab518d5c66f0b911c92e35acce6ab925.svg?invert_in_darkmode&sanitize=true" align=middle width=49.08689279999998pt height=22.465723500000017pt/> can be used to determine the *difference* in distance that the transmitter is located from the towers. For example, assume that the transmitter is on a circle of radius <img src="/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> metres from tower 1, where the signal was received first. Then it must also be on a circle of radius <img src="/tex/94cf9bfabcb071b6b432112626ffd8a3.svg?invert_in_darkmode&sanitize=true" align=middle width=106.38308009999999pt height=22.831056599999986pt/> metres from tower 0, where the signal was received second. The device must then lie at the intersection of the two circles, giving two possible locations (or one if the circles only touch, or none if the circles do not touch).
 
