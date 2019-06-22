@@ -9,21 +9,21 @@ A single motivated individual with several hundred USD and a hobbyist level of c
 
 When a signal is transmitted by a radio device it propagates through the atmosphere at approximately the speed of light - that is, approximately $v = 3 \text{e} 8ms^{-1}$. 
 
-If this signal is received by two receivers (towers), the time difference of arrival (TDOA) between the first and second tower can be determined. $\text{TDOA} = t_1 - t_0$ where $t_0$ is the time the signal is received first and $t_1$ is the time the signal is received second. The towers require synchronized high accuracy clocks, which can be achieved in practice with a GPS clock on each tower.
+If this signal is received by two receivers (towers), the time difference of arrival ($\text{TDOA}$) between the first and second tower can be determined. $\text{TDOA} = t_1 - t_0$ where $t_0$ is the time the signal is received first and $t_1$ is the time the signal is received second. The towers require synchronized high accuracy clocks, which can be achieved in practice with a GPS clock on each tower.
 
-The below animation shows a signal propagating from a transmitter "Tx" and being received by two towers at different times, allowing the TDOA to be calculated.
+The below animation shows a signal propagating from a transmitter "Tx" and being received by two towers at different times, allowing the $\text{TDOA}$ to be calculated.
 
 ![](animations/tdoa.gif)
 
-This TDOA can be used to determine the *difference* in distance that the transmitter is located from the towers. For example, assume that the transmitter is on a circle of radius d metres from tower 1, where the signal was received first. Then it must also be on a circle of radius d+v\*TDOA metres from tower 0, where the signal was received second. The device must then lie at the intersection of the two circles, giving two possible locations (or one if the circles only touch).
+This $\text{TDOA}$ can be used to determine the *difference* in distance that the transmitter is located from the towers. For example, assume that the transmitter is on a circle of radius $d$ metres from tower 1, where the signal was received first. Then it must also be on a circle of radius $d+v \times \text{TDOA}$ metres from tower 0, where the signal was received second. The device must then lie at the intersection of the two circles, giving two possible locations (or one if the circles only touch, or none if the circles do not touch).
 
-By iterating over a range of values for d and at each iteration finding the intersection of the two circles, a locus of possible transmitter locations can be determined. This produces a hyperbolic curve on which the transmitter lies. Notably, it is not required to know *when* the signal was first transmitted - as you would with trilateration - and so no communication with the transmitter is required beyond simply identifying the signal.
+By iterating over a range of values for $d$ and at each iteration finding the intersection of the two circles, a locus of possible transmitter locations can be determined. This produces a hyperbolic curve on which the transmitter lies. Notably, it is not required to know *when* the signal was first transmitted - as you would with trilateration - and so no communication with the transmitter is required beyond simply identifying the signal.
 
-The below animation shows circles of increasing radius around the two towers and the resulting hyperbolic locus of intersections as d is increased. The circle around tower 1 has a radius of r1=d, and the circle around tower 0 has a radius of r0=d+TDOA\*v (noting TDOA\*v is constant and TDOA comes from the previous animation). 
+The below animation shows circles of increasing radius around the two towers and the resulting hyperbolic locus of intersections as $d$ is increased. The circle around tower 1 has a radius of $r_1=d$, and the circle around tower 0 has a radius of $r_0=d+\text{TDOA} \times v$ (noting $\text{TDOA} \times v$ is constant and $\text{TDOA}$ comes from the previous animation). 
 
 ![](animations/locus.gif)
 
-With n towers, this process can be repeated between the tower that first received the message and every other tower to produce n-1 loci. In general, with three towers the device location can be narrowed down to at least two positions and with four towers to exactly one position. There are some cases, depending on the relative geometry of the towers and transmitter and the error in the timestamping, where this is not the case.
+With $n$ towers, this process can be repeated between the tower that first received the message and every other tower to produce $n-1$ loci. In general, with three towers the device location can be narrowed down to at least two positions and with four towers to exactly one position. There are some cases, depending on the relative geometry of the towers and transmitter and the error in the timestamping, where this is not the case.
 
 ![](animations/loci.gif)
 
