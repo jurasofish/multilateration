@@ -21,11 +21,11 @@ By iterating over a range of values for <img src="/tex/2103f85b8b1477f430fc407ca
 
 The below animation shows circles of increasing radius around the two towers and the resulting hyperbolic locus of intersections as <img src="/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> is increased. The circle around tower 1 has a radius of <img src="/tex/6c775160070f36a222c6974886b84a63.svg?invert_in_darkmode&sanitize=true" align=middle width=45.26437409999999pt height=22.831056599999986pt/>, and the circle around tower 0 has a radius of <img src="/tex/ce931c5e3797ea59637a36c0ee4a2e04.svg?invert_in_darkmode&sanitize=true" align=middle width=143.0914551pt height=22.831056599999986pt/> (noting <img src="/tex/14b25fe693db4861d3fec47ef3796836.svg?invert_in_darkmode&sanitize=true" align=middle width=77.73589064999999pt height=22.465723500000017pt/> is constant and <img src="/tex/ab518d5c66f0b911c92e35acce6ab925.svg?invert_in_darkmode&sanitize=true" align=middle width=49.08689279999998pt height=22.465723500000017pt/> comes from the previous animation). 
 
-![](animations/locus.gif)
+<p align="center"><img src="animations/locus.gif"></p>
 
 With <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/> towers, this process can be repeated between the tower that first received the message and every other tower to produce <img src="/tex/efcf8d472ecdd2ea56d727b5746100e3.svg?invert_in_darkmode&sanitize=true" align=middle width=38.17727759999999pt height=21.18721440000001pt/> loci. In general, with three towers the device location can be narrowed down to at least two positions and with four towers to exactly one position. There are some cases, depending on the relative geometry of the towers and transmitter and the error in the timestamping, where this is not the case.
 
-![](animations/loci.gif)
+<p align="center"><img src="animations/loci.gif"></p>
 
 The accuracy of the determined location will depend on the accuracy of the timestamping, the effects of diffraction and obstacles on path length, the relative geometry of the transmitter and towers, etc. The approximation of the problem to two dimensions will also introduce error.
 
