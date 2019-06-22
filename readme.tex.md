@@ -7,9 +7,9 @@ A single motivated individual with several hundred USD and a hobbyist level of c
 
 ## Locating the source of a signal transmission
 
-When a signal is transmitted by a radio device it propagates through the atmosphere at approximately the speed of light - that is, approximately v = 3e8m/s. 
+When a signal is transmitted by a radio device it propagates through the atmosphere at approximately the speed of light - that is, approximately $v = 3 \text{e} 8ms^{-1}$. 
 
-If this signal is received by two receivers (towers), the time difference of arrival (TDOA) between the first and second tower can be determined. TDOA = t<sub>1</sub> - t<sub>0</sub> where t<sub>0</sub> is the time the signal is received first and t<sub>1</sub> is the time the signal is received second. The towers require synchronized high accuracy clocks, which can be achieved in practice with a GPS clock on each tower.
+If this signal is received by two receivers (towers), the time difference of arrival (TDOA) between the first and second tower can be determined. $\text{TDOA} = t_1 - t_0$ where $t_0$ is the time the signal is received first and $t_1$ is the time the signal is received second. The towers require synchronized high accuracy clocks, which can be achieved in practice with a GPS clock on each tower.
 
 The below animation shows a signal propagating from a transmitter "Tx" and being received by two towers at different times, allowing the TDOA to be calculated.
 
