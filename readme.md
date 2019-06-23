@@ -77,6 +77,7 @@ This notebook presents a small python script that produces a set of loci of poss
 from multilaterate import get_loci
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.optimize import least_squares
 ```
 
 
@@ -200,6 +201,103 @@ plt.show()
 
 
 ![png](output_3_1.png)
+
+
+
+```python
+# plot the same hyperbola using the derived expressions.
+
+fig, ax = plt.subplots(figsize=(5,5))
+max_width = max(tx_square_side, rx_square_side)/2
+ax.set_ylim((max_width*-1, max_width))
+ax.set_xlim((max_width*-1, max_width))
+
+c = np.argmin(rec_times)  # Tower that received first.
+p_c = towers[c]
+t_c = rec_times[c]
+
+x = np.linspace(towers[i][0] - 50000, towers[i][0] + 50000, 100)
+y = np.linspace(towers[i][1] - 50000, towers[i][1] + 50000, 100)
+x, y = np.meshgrid(x, y)
+
+for i in range(num_towers):
+    if i == c:
+        continue
+        
+    p_i = towers[i]
+    t_i = rec_times[i]
+    
+    plt.contour(
+        x, y,
+        (
+           np.sqrt((x-p_c[0])**2 + (y-p_c[1])**2) 
+         - np.sqrt((x-p_i[0])**2 + (y-p_i[1])**2) 
+         + v*(t_i - t_c)
+        ),
+        [0])
+```
+
+
+![png](output_4_0.png)
+
+
+
+```python
+# Solve the location of the transmitter.
+
+c = np.argmin(rec_times)
+p_c = np.expand_dims(towers[c], axis=0)
+t_c = rec_times[c]
+
+# Remove the c tower to allow for vectorization.
+all_p_i = np.delete(towers, c, axis=0)
+all_t_i = np.delete(rec_times, c, axis=0)
+
+def eval_solution(x):
+    """ x is 2 element array of x, y of the transmitter"""
+    return (
+          np.linalg.norm(x - p_c, axis=1)
+        - np.linalg.norm(x - all_p_i, axis=1) 
+        + v*(all_t_i - t_c) 
+    )
+
+# Initial guess.
+x_init = [0, 0]
+
+# Find a value of x such that eval_solution is minimized.
+# Remember the receive times have error added to them: rec_time_noise_stdd.
+res = least_squares(eval_solution, x_init)
+
+print(f"Actual emitter location:    ({tx[0]:.1f}, {tx[1]:.1f}) ")
+print(f"Calculated emitter locaion: ({res.x[0]:.1f}, {res.x[1]:.1f})")
+print(f"Error in metres:            {np.linalg.norm(tx-res.x):.1f}")
+
+# And now plot the solution.
+fig, ax = plt.subplots(figsize=(5,5))
+max_width = max(tx_square_side, rx_square_side)/2
+ax.set_ylim((max_width*-1, max_width))
+ax.set_xlim((max_width*-1, max_width))
+
+for locus in loci:
+    ax.plot(locus[0], locus[1])
+
+ax.scatter(tx[0], tx[1], color='red')
+ax.annotate('Actual', (tx[0], tx[1]))
+
+ax.scatter(res.x[0], res.x[1], color='blue')
+ax.annotate('Solved', (res.x[0], res.x[1]))
+
+plt.show()
+
+```
+
+    Actual emitter location:    (731.7, 2184.2) 
+    Calculated emitter locaion: (711.6, 2129.4)
+    Error in metres:            58.4
+
+
+
+![png](output_5_1.png)
 
 
 ## Animations
