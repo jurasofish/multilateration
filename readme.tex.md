@@ -32,9 +32,9 @@ The accuracy of the determined location will depend on the accuracy of the times
 ## Analysis
 Multilateration was just explained in an intuitive manner. However, it is convenient to have a set of mathematical expressions that describe the system if the location of the transmitter is to be found. This analysis is inspired heavily by [André Andersen's](http://blog.andersen.im/2012/07/signal-emitter-positioning-using-multilateration) similar work.
 
-Consider a transmitter located at $\vec{x}$ whose transmission at time $t_0$ propagates at speed $v \ ms^{-1}$ and is received by a set of towers located at $\vec{p}_i$ with transmission receive times $t_i$. Tower $\vec{p}_c$ with receive time $t_c$ is the first tower to receive the message, and $c \neq i$.
+Consider, in Euclidean $\mathbb{R}^{2}$ space, a transmitter located at $\vec{x}$ whose transmission at time $t_0$ propagates at speed $v \ ms^{-1}$ and is received by a set of $n$ towers. Let the tower that receives this transmission first be at location $\vec{p}_c$ with receive time $t_c$. Let the remaining $n-1$ towers be located at $\vec{p}_i$ with transmission receive times $t_i$.
 
-For the first tower, $\vec{p}_c$ we can say that the distance between the transmitter $\vec{x}$ and the tower is equal to the transmission propagation speed multiplied by the time of flight.
+For the first tower, $\vec{p}_c$, we can say that the distance between the transmitter $\vec{x}$ and the tower is equal to the transmission propagation speed multiplied by the time of flight.
 $$
 \|\vec{x} - \vec{p}_c\| = v(t_c-t_0)
 $$
@@ -48,20 +48,22 @@ $$
 \end{align}
 $$
 
-Combining these two expressions we obtain the following, where the only known is $\vec{x}$.
+Combining these two expressions we obtain the following, where the only unknown is $\vec{x}$.
 $$
 \|\vec{x} - \vec{p}_c\| = \|\vec{x} - \vec{p}_i\| - v(t_i - t_c)
 $$
 
-Expanding this out we obtain an expression that can be readily applied, where subscript $x$ and $y$ denote the x and y components of a vector respectively.
+Expanding this out we obtain a set of $n-1$ expressions, where there are $n$ towers in total. Subscript $x$ and $y$ denote the x and y components of a vector respectively.
 $$
 \begin{align}
-&\|\vec{x} - \vec{p}_c\| - \|\vec{x} - \vec{p}_i\| + v(t_i - t_c) &= 0 \\
+&\|\vec{x} - \vec{p}_c\| - \|\vec{x} - \vec{p}_i\| + v(t_i - t_c) &= 0 &, \quad i = 1, ..., n-1 \\
 \Rightarrow \ & \sqrt{(\vec{x}_x - \vec{p}_{c,x})^2 + (\vec{x}_y - \vec{p}_{c,y})^2}
               - \sqrt{(\vec{x}_x - \vec{p}_{i,x})^2 + (\vec{x}_y - \vec{p}_{i,y})^2} 
-              + v(t_i - t_c) &= 0 \\
+              + v(t_i - t_c) &= 0 &, \quad i = 1, ..., n-1 \\
 \end{align}
 $$
+
+Each of these equations represents a single hyperbola. These hyperbolas can be plotted individually, producing the same graphs shown above by taking circle intersections, or they can be solved by finding a value of $\vec{x}$ that minimizes their error. 
 
 
 ## Implications: IoT and LoRaWAN
