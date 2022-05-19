@@ -35,18 +35,14 @@ Multilateration was just explained in an intuitive manner. However, it is conven
 Consider, in Euclidean $\mathbb{R}^{2}$ space, a transmitter located at $\vec{x}$ whose transmission at time $t_0$ propagates at speed $v \ ms^{-1}$ and is received by a set of $n$ towers. Let the tower that receives this transmission first be at location $\vec{p}_c$ with receive time $t_c$. Let the remaining $n-1$ towers be located at $\vec{p}_i$ with transmission receive times $t_i$.
 
 For the first tower, $\vec{p}_c$, we can say that the distance between the transmitter $\vec{x}$ and the tower is equal to the transmission propagation speed multiplied by the time of flight.
-$$
-\|\vec{x} - \vec{p}_c\| = v(t_c-t_0)
-$$
+$$\|\vec{x} - \vec{p}_c\| = v(t_c-t_0)$$
 
 We can make a similar statement for each of the other towers.
-$$
-\begin{align}
+$$\begin{align}
 \|\vec{x} - \vec{p}_i\| &= v(t_i-t_0) \\
 &= v(t_i - t_c + t_c - t_0) \\
 &= v(t_i - t_c) + v(t_c - t_0) \\
-\end{align}
-$$
+\end{align}$$
 
 Combining these two expressions we obtain the following, where the only unknown is $\vec{x}$.
 $$
