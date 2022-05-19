@@ -7,23 +7,23 @@ A single motivated individual with several hundred USD and a hobbyist level of c
 
 ## Locating the source of a signal transmission - intuition
 
-When a signal is transmitted by a radio device it propagates through the atmosphere at approximately the speed of light - that is, approximately <img src="/tex/7b40691d3fcdab7f1174d83e2de738c6.svg?invert_in_darkmode&sanitize=true" align=middle width=93.18497264999998pt height=26.76175259999998pt/>. 
+When a signal is transmitted by a radio device it propagates through the atmosphere at approximately the speed of light - that is, approximately $v = 3 \text{e} 8ms^{-1}$. 
 
-If this signal is received by two receivers (towers), the time difference of arrival (<img src="/tex/ab518d5c66f0b911c92e35acce6ab925.svg?invert_in_darkmode&sanitize=true" align=middle width=49.08689279999998pt height=22.465723500000017pt/>) between the first and second tower can be determined. <img src="/tex/230a4b7a9ac468f0ec9acbf28016d276.svg?invert_in_darkmode&sanitize=true" align=middle width=116.89486215pt height=22.465723500000017pt/> where <img src="/tex/6df6ddacc987bd7a5070beafef47fcc1.svg?invert_in_darkmode&sanitize=true" align=middle width=12.48864374999999pt height=20.221802699999984pt/> is the time the signal is received first and <img src="/tex/4ad941990ade99427ec9730e46ddcdd4.svg?invert_in_darkmode&sanitize=true" align=middle width=12.48864374999999pt height=20.221802699999984pt/> is the time the signal is received second. The towers require synchronized high accuracy clocks, which can be achieved in practice with a GPS clock on each tower.
+If this signal is received by two receivers (towers), the time difference of arrival ($\text{TDOA}$) between the first and second tower can be determined. $\text{TDOA} = t_1 - t_0$ where $t_0$ is the time the signal is received first and $t_1$ is the time the signal is received second. The towers require synchronized high accuracy clocks, which can be achieved in practice with a GPS clock on each tower.
 
-The below animation shows a signal propagating from a transmitter "Tx" and being received by two towers at different times, allowing the <img src="/tex/ab518d5c66f0b911c92e35acce6ab925.svg?invert_in_darkmode&sanitize=true" align=middle width=49.08689279999998pt height=22.465723500000017pt/> to be calculated.
+The below animation shows a signal propagating from a transmitter "Tx" and being received by two towers at different times, allowing the $\text{TDOA}$ to be calculated.
 
 <p align="center"><img src="animations/tdoa.gif"></p>
 
-This <img src="/tex/ab518d5c66f0b911c92e35acce6ab925.svg?invert_in_darkmode&sanitize=true" align=middle width=49.08689279999998pt height=22.465723500000017pt/> can be used to determine the *difference* in distance that the transmitter is located from the towers. For example, assume that the transmitter is on a circle of radius <img src="/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> metres from tower 1, where the signal was received first. Then it must also be on a circle of radius <img src="/tex/94cf9bfabcb071b6b432112626ffd8a3.svg?invert_in_darkmode&sanitize=true" align=middle width=106.38308009999999pt height=22.831056599999986pt/> metres from tower 0, where the signal was received second. The device must then lie at the intersection of the two circles, giving two possible locations (or one if the circles only touch, or none if the circles do not touch).
+This $\text{TDOA}$ can be used to determine the *difference* in distance that the transmitter is located from the towers. For example, assume that the transmitter is on a circle of radius $d$ metres from tower 1, where the signal was received first. Then it must also be on a circle of radius $d+v \times \text{TDOA}$ metres from tower 0, where the signal was received second. The device must then lie at the intersection of the two circles, giving two possible locations (or one if the circles only touch, or none if the circles do not touch).
 
-By iterating over a range of values for <img src="/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> and at each iteration finding the intersection of the two circles, a locus of possible transmitter locations can be determined. This produces a hyperbolic curve on which the transmitter lies. Notably, it is not required to know *when* the signal was first transmitted - as you would with trilateration - and so no communication with the transmitter is required beyond simply identifying the signal.
+By iterating over a range of values for $d$ and at each iteration finding the intersection of the two circles, a locus of possible transmitter locations can be determined. This produces a hyperbolic curve on which the transmitter lies. Notably, it is not required to know *when* the signal was first transmitted - as you would with trilateration - and so no communication with the transmitter is required beyond simply identifying the signal.
 
-The below animation shows circles of increasing radius around the two towers and the resulting hyperbolic locus of intersections as <img src="/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> is increased. The circle around tower 1 has a radius of <img src="/tex/6c775160070f36a222c6974886b84a63.svg?invert_in_darkmode&sanitize=true" align=middle width=45.26437409999999pt height=22.831056599999986pt/>, and the circle around tower 0 has a radius of <img src="/tex/ce931c5e3797ea59637a36c0ee4a2e04.svg?invert_in_darkmode&sanitize=true" align=middle width=143.0914551pt height=22.831056599999986pt/> (noting <img src="/tex/14b25fe693db4861d3fec47ef3796836.svg?invert_in_darkmode&sanitize=true" align=middle width=77.73589064999999pt height=22.465723500000017pt/> is constant and <img src="/tex/ab518d5c66f0b911c92e35acce6ab925.svg?invert_in_darkmode&sanitize=true" align=middle width=49.08689279999998pt height=22.465723500000017pt/> comes from the previous animation). 
+The below animation shows circles of increasing radius around the two towers and the resulting hyperbolic locus of intersections as $d$ is increased. The circle around tower 1 has a radius of $r_1=d$, and the circle around tower 0 has a radius of $r_0=d+\text{TDOA} \times v$ (noting $\text{TDOA} \times v$ is constant and $\text{TDOA}$ comes from the previous animation). 
 
 <p align="center"><img src="animations/locus.gif"></p>
 
-With <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/> towers, this process can be repeated between the tower that first received the message and every other tower to produce <img src="/tex/efcf8d472ecdd2ea56d727b5746100e3.svg?invert_in_darkmode&sanitize=true" align=middle width=38.17727759999999pt height=21.18721440000001pt/> loci. In general, with three towers the device location can be narrowed down to at least two positions and with four towers to exactly one position. There are some cases, depending on the relative geometry of the towers and transmitter and the error in the timestamping, where this is not the case.
+With $n$ towers, this process can be repeated between the tower that first received the message and every other tower to produce $n-1$ loci. In general, with three towers the device location can be narrowed down to at least two positions and with four towers to exactly one position. There are some cases, depending on the relative geometry of the towers and transmitter and the error in the timestamping, where this is not the case.
 
 <p align="center"><img src="animations/loci.gif"></p>
 
@@ -32,21 +32,38 @@ The accuracy of the determined location will depend on the accuracy of the times
 ## Analysis
 Multilateration was just explained in an intuitive manner. However, it is convenient to have a set of mathematical expressions that describe the system if the location of the transmitter is to be found. This analysis is inspired heavily by [André Andersen's](http://blog.andersen.im/2012/07/signal-emitter-positioning-using-multilateration) similar work.
 
-Consider, in Euclidean <img src="/tex/3177e934cf575c08431076a1a5479ba5.svg?invert_in_darkmode&sanitize=true" align=middle width=18.424726649999986pt height=26.76175259999998pt/> space, a transmitter located at <img src="/tex/19e3f7018228f8a8c6559d0ea5500aa2.svg?invert_in_darkmode&sanitize=true" align=middle width=10.747741949999991pt height=23.488575000000026pt/> whose transmission at time <img src="/tex/6df6ddacc987bd7a5070beafef47fcc1.svg?invert_in_darkmode&sanitize=true" align=middle width=12.48864374999999pt height=20.221802699999984pt/> propagates at speed <img src="/tex/1a9f68fae14a5f2c3944f20c7746c582.svg?invert_in_darkmode&sanitize=true" align=middle width=53.002433549999985pt height=26.76175259999998pt/> and is received by a set of <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/> towers. Let the tower that receives this transmission first be at location <img src="/tex/1447b57eb35586ec64a4d8d2fbb653e0.svg?invert_in_darkmode&sanitize=true" align=middle width=14.14521899999999pt height=23.488575000000026pt/> with receive time <img src="/tex/23eda6b0b8aec6ac41ed8b7cb41c0942.svg?invert_in_darkmode&sanitize=true" align=middle width=11.810749499999991pt height=20.221802699999984pt/>. Let the remaining <img src="/tex/efcf8d472ecdd2ea56d727b5746100e3.svg?invert_in_darkmode&sanitize=true" align=middle width=38.17727759999999pt height=21.18721440000001pt/> towers be located at <img src="/tex/81e4c10c4a5aefbf7d79a0aa3c401941.svg?invert_in_darkmode&sanitize=true" align=middle width=12.92146679999999pt height=23.488575000000026pt/> with transmission receive times <img src="/tex/02ab12d0013b89c8edc7f0f2662fa7a9.svg?invert_in_darkmode&sanitize=true" align=middle width=10.58699729999999pt height=20.221802699999984pt/>.
+Consider, in Euclidean $\mathbb{R}^{2}$ space, a transmitter located at $\vec{x}$ whose transmission at time $t_0$ propagates at speed $v \ ms^{-1}$ and is received by a set of $n$ towers. Let the tower that receives this transmission first be at location $\vec{p}_c$ with receive time $t_c$. Let the remaining $n-1$ towers be located at $\vec{p}_i$ with transmission receive times $t_i$.
 
-For the first tower, <img src="/tex/1447b57eb35586ec64a4d8d2fbb653e0.svg?invert_in_darkmode&sanitize=true" align=middle width=14.14521899999999pt height=23.488575000000026pt/>, we can say that the distance between the transmitter <img src="/tex/19e3f7018228f8a8c6559d0ea5500aa2.svg?invert_in_darkmode&sanitize=true" align=middle width=10.747741949999991pt height=23.488575000000026pt/> and the tower is equal to the transmission propagation speed multiplied by the time of flight.
-<p align="center"><img src="/tex/a4c6de18edfc65fe4376b9438c00ec4b.svg?invert_in_darkmode&sanitize=true" align=middle width=150.1870128pt height=16.438356pt/></p>
+For the first tower, $\vec{p}_c$, we can say that the distance between the transmitter $\vec{x}$ and the tower is equal to the transmission propagation speed multiplied by the time of flight.
+$$
+\|\vec{x} - \vec{p}_c\| = v(t_c-t_0)
+$$
 
 We can make a similar statement for each of the other towers.
-<p align="center"><img src="/tex/8182282dad754f66fe56591253699990.svg?invert_in_darkmode&sanitize=true" align=middle width=234.53043899999997pt height=65.753424pt/></p>
+$$
+\begin{align}
+\|\vec{x} - \vec{p}_i\| &= v(t_i-t_0) \\
+&= v(t_i - t_c + t_c - t_0) \\
+&= v(t_i - t_c) + v(t_c - t_0) \\
+\end{align}
+$$
 
-Combining these two expressions we obtain the following, where the only unknown is <img src="/tex/19e3f7018228f8a8c6559d0ea5500aa2.svg?invert_in_darkmode&sanitize=true" align=middle width=10.747741949999991pt height=23.488575000000026pt/>.
-<p align="center"><img src="/tex/7146d7ec04600031453049bed6b8a9b0.svg?invert_in_darkmode&sanitize=true" align=middle width=228.04446059999998pt height=16.438356pt/></p>
+Combining these two expressions we obtain the following, where the only unknown is $\vec{x}$.
+$$
+\|\vec{x} - \vec{p}_c\| = \|\vec{x} - \vec{p}_i\| - v(t_i - t_c)
+$$
 
-Expanding this out we obtain a set of <img src="/tex/efcf8d472ecdd2ea56d727b5746100e3.svg?invert_in_darkmode&sanitize=true" align=middle width=38.17727759999999pt height=21.18721440000001pt/> expressions, where there are <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/> towers in total. Subscript <img src="/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> and <img src="/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/> denote the x and y components of a vector respectively.
-<p align="center"><img src="/tex/62af213830c7d8f42556b966775587f7.svg?invert_in_darkmode&sanitize=true" align=middle width=701.72133405pt height=55.06880115pt/></p>
+Expanding this out we obtain a set of $n-1$ expressions, where there are $n$ towers in total. Subscript $x$ and $y$ denote the x and y components of a vector respectively.
+$$
+\begin{align}
+&\|\vec{x} - \vec{p}_c\| - \|\vec{x} - \vec{p}_i\| + v(t_i - t_c) &= 0 &, \quad i = 1, ..., n-1 \\
+\Rightarrow \ & \sqrt{(\vec{x}_x - \vec{p}_{c,x})^2 + (\vec{x}_y - \vec{p}_{c,y})^2}
+              - \sqrt{(\vec{x}_x - \vec{p}_{i,x})^2 + (\vec{x}_y - \vec{p}_{i,y})^2} 
+              + v(t_i - t_c) &= 0 &, \quad i = 1, ..., n-1 \\
+\end{align}
+$$
 
-Each of these equations represents a single hyperbola. These hyperbolas can be plotted individually, producing the same graphs shown above by taking circle intersections, or they can be solved by finding a value of <img src="/tex/19e3f7018228f8a8c6559d0ea5500aa2.svg?invert_in_darkmode&sanitize=true" align=middle width=10.747741949999991pt height=23.488575000000026pt/> that minimizes their error. 
+Each of these equations represents a single hyperbola. These hyperbolas can be plotted individually, producing the same graphs shown above by taking circle intersections, or they can be solved by finding a value of $\vec{x}$ that minimizes their error. 
 
 
 ## Implications: IoT and LoRaWAN
